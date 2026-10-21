@@ -1,0 +1,5 @@
+import { createServer } from "node:http";
+import { readFile, stat } from "node:fs/promises";
+import { extname, join, resolve } from "node:path";
+const root=resolve(process.argv[2]??"dist/plugin-ui-csp-lab");const port=Number(process.env.PORT??4173);const types={".html":"text/html; charset=utf-8",".css":"text/css; charset=utf-8",".mjs":"text/javascript; charset=utf-8",".json":"application/json; charset=utf-8"};
+createServer(async(req,res)=>{try{const pathname=new URL(req.url,"http://local").pathname;const target=resolve(join(root,pathname==="/"?"index.html":pathname.slice(1)));if(!target.startsWith(`${root}/`))throw new Error("outside root");await stat(target);res.writeHead(200,{"content-type":types[extname(target)]??"application/octet-stream","x-content-type-options":"nosniff","cache-control":"no-store"});res.end(await readFile(target));}catch{res.writeHead(404,{"content-type":"text/plain; charset=utf-8"});res.end("Not found");}}).listen(port,"127.0.0.1",()=>console.log(`http://127.0.0.1:${port}`));

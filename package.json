@@ -1,0 +1,17 @@
+{
+  "name": "plugin-ui-csp-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Offline preflight checks for plugin UI dependency origins and declared CSP metadata.",
+  "scripts": {
+    "lint": "node --check src/core.mjs && node --check src/app.mjs && node --check cli.mjs && node --check server.mjs",
+    "typecheck": "npm run lint",
+    "test": "node --test",
+    "build": "node scripts/build.mjs",
+    "audit": "npm audit --omit=dev",
+    "check": "npm run lint && npm run typecheck && npm test && npm run build && npm run audit"
+  },
+  "engines": { "node": ">=20" },
+  "license": "MIT"
+}

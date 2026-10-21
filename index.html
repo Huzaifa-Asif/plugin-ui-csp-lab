@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Offline preflight checks for plugin UI CSP metadata.">
+  <title>Plugin UI CSP Lab</title><link rel="stylesheet" href="styles.css">
+</head>
+<body><main>
+  <p class="eyebrow">Offline release preflight</p><h1>Plugin UI CSP Lab</h1>
+  <p>Compare absolute origins referenced by a UI bundle with its declared plugin CSP metadata. Inputs stay in this browser tab.</p>
+  <form><div class="grid">
+    <label>Plugin or resource metadata JSON<textarea id="metadata" rows="17" spellcheck="false" required></textarea></label>
+    <label>UI HTML / JavaScript / CSS source<textarea id="source" rows="17" spellcheck="false" required></textarea></label>
+  </div><div class="actions"><button type="submit">Run audit</button><button type="button" class="secondary" id="example">Load safe example</button></div></form>
+  <p id="status" role="status" aria-live="polite">Ready</p><pre id="output" tabindex="0" aria-label="Audit report"></pre>
+  <section><h2>Important boundary</h2><p>This is a bounded static heuristic. It does not execute code, fetch URLs, inspect response headers, prove CSP safety, or replace testing in ChatGPT.</p></section>
+</main><footer><a href="https://github.com/Huzaifa-Asif/plugin-ui-csp-lab">Source, privacy, and limitations</a></footer><script type="module" src="src/app.mjs"></script></body></html>
